@@ -1,4 +1,5 @@
 import {selector} from "recoil"
+import { getRandomDog } from "../service/api";
 import { countAtom } from "./atom"
 
 
@@ -11,3 +12,14 @@ export const countNextState = selector({
     return get(countAtom) * 2;
   }
 });
+
+
+
+//recoil 비동기 처리
+export const randomDog = selector({
+  key : "randomDog",
+  get : async () => {
+    const message = await getRandomDog();
+    return message;
+  }
+})
